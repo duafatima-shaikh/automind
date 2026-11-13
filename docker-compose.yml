@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        EXTRAS: ml,ocr
+        INSTALL_LIBREOFFICE: "false"
+    env_file:
+      - .env
+    environment:
+      AUTOMIND_DATA_DIR: /data
+    ports:
+      - "8000:8000"
+    volumes:
+      - automind_data:/data
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      AUTOMIND_API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+
+volumes:
+  automind_data:

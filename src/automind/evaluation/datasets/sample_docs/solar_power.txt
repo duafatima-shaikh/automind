@@ -1,0 +1,11 @@
+Solar Power Basics
+
+A solar panel turns sunlight into electricity using photovoltaic cells made mostly from silicon. When light hits a cell, it knocks electrons loose and creates a flow of direct current. An inverter then changes that direct current into alternating current, which is the type used by household appliances.
+
+Most home panels convert between 15 and 22 percent of the sunlight they receive into electricity. Panel efficiency drops slowly over time, and manufacturers usually guarantee that a panel will still produce at least 80 percent of its original output after 25 years. Heat reduces output, so panels on a roof with good airflow perform better in hot weather.
+
+A typical home system has between 15 and 25 panels and produces about 6 kilowatts at peak sunlight. The best direction for panels in the northern hemisphere is south, with a tilt close to the latitude of the location. Shade from trees or chimneys can cut the output of a whole string of panels, so installers often add small devices called microinverters to limit the loss.
+
+Batteries store extra electricity for use at night. A common home battery holds about 10 kilowatt hours, which can run a refrigerator, lights, and a router for roughly a full day. Without a battery, a home usually sends extra power to the grid and receives credit from the utility company.
+
+The payback period for a home solar system is often between 6 and 10 years, depending on electricity prices and local incentives. Regular maintenance is simple: rinse dust off the panels a few times a year and check that the inverter display shows no error.

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoMind</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 22V10l7 8 7-8v12' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"><svg viewBox="0 0 32 32" width="22" height="22"><path d="M9 22V10l7 8 7-8v12" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="brand-name">AutoMind</div><div class="brand-tag" data-i18n="tagline"></div></div>
+      <button class="icon-btn only-mobile" id="closeSide" data-i18n-title="close" aria-label="close">✕</button>
+    </div>
+    <label class="dropzone" id="dropzone">
+      <input type="file" id="fileInput" multiple hidden>
+      <span class="dz-icon">⬆</span>
+      <strong data-i18n="upload"></strong>
+      <small data-i18n="dropHint"></small>
+      <small class="dz-formats" data-i18n="formats"></small>
+    </label>
+    <div class="uploads" id="uploads"></div>
+    <div class="docs-head"><h3 data-i18n="documents"></h3><span class="muted small" id="scopeLabel"></span></div>
+    <ul class="doclist" id="docList"></ul>
+    <div class="side-foot">
+      <button class="model-chip" id="modelChip"><span class="dot" id="modelDot"></span><span id="modelText"></span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn only-mobile" id="menuBtn" data-i18n-title="menu" aria-label="menu">☰</button>
+      <nav class="tabs" role="tablist">
+        <button role="tab" class="tab active" data-tab="chat" data-i18n="tabAsk"></button>
+        <button role="tab" class="tab" data-tab="study" data-i18n="tabStudy"></button>
+        <button role="tab" class="tab" data-tab="reader" data-i18n="tabReader"></button>
+      </nav>
+      <div class="top-actions">
+        <div class="seg" id="langSeg" role="group" aria-label="Language">
+          <button data-lang="en">EN</button><button data-lang="ur">اردو</button><button data-lang="sd">سنڌي</button>
+        </div>
+        <button class="icon-btn" id="themeBtn" data-i18n-title="theme" aria-label="theme">🌓</button>
+        <button class="icon-btn" id="settingsBtn" data-i18n-title="settings" aria-label="settings">⚙</button>
+      </div>
+    </header>
+
+    <!-- ASK -->
+    <section class="view" id="view-chat">
+      <div class="messages" id="messages">
+        <div class="welcome" id="welcome">
+          <div class="welcome-logo"><svg viewBox="0 0 32 32" width="34" height="34"><path d="M9 22V10l7 8 7-8v12" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h1 data-i18n="welcomeTitle"></h1>
+          <p data-i18n="welcomeSub"></p>
+          <div class="chips" id="suggestions"></div>
+        </div>
+      </div>
+      <form class="composer" id="composer">
+        <button type="button" class="icon-btn" id="micBtn" data-i18n-title="speak" aria-label="speak">🎤</button>
+        <textarea id="question" rows="1" dir="auto" data-i18n-ph="chatPlaceholder"></textarea>
+        <button type="submit" class="btn primary" id="sendBtn" data-i18n="send"></button>
+      </form>
+      <label class="auto-read"><input type="checkbox" id="autoRead"> <span data-i18n="autoRead"></span></label>
+    </section>
+
+    <!-- STUDY -->
+    <section class="view hidden" id="view-study">
+      <div class="study-grid">
+        <div class="study-left">
+          <h2 data-i18n="studyTitle"></h2>
+          <p class="muted" data-i18n="studySub"></p>
+          <div class="tools" id="tools"></div>
+          <form class="options hidden" id="options">
+            <div class="field" data-for="topic explain summary notes quiz flashcards assignment mid_exam final_exam"><label data-i18n="optTopic"></label><input id="optTopic" dir="auto" data-i18n-ph="optTopicPh"></div>
+            <div class="field"><label data-i18n="optPages"></label><input id="optPages" dir="ltr" data-i18n-ph="optPagesPh"></div>
+            <div class="row">
+              <div class="field" data-for="quiz assignment mid_exam final_exam"><label data-i18n="optDifficulty"></label>
+                <select id="optDifficulty"><option value="easy" data-i18n="easy"></option><option value="medium" selected data-i18n="medium"></option><option value="hard" data-i18n="hard"></option></select></div>
+              <div class="field" data-for="summary notes"><label data-i18n="optLength"></label>
+                <select id="optLength"><option value="short" data-i18n="short"></option><option value="medium" selected data-i18n="medium"></option><option value="detailed" data-i18n="detailed"></option></select></div>
+              <div class="field" data-for="quiz flashcards"><label data-i18n="optCount"></label><input id="optCount" type="number" min="1" max="50" value="10"></div>
+              <div class="field" data-for="assignment mid_exam final_exam"><label data-i18n="optMarks"></label><input id="optMarks" type="number" min="5" max="200" value="30"></div>
+            </div>
+            <div class="field"><label data-i18n="optExtra"></label><input id="optExtra" dir="auto" data-i18n-ph="optExtraPh"></div>
+            <button class="btn primary wide" type="submit" id="genBtn" data-i18n="generate"></button>
+          </form>
+        </div>
+        <div class="study-right">
+          <div class="output-bar hidden" id="outputBar">
+            <button class="btn small" id="outListen"></button>
+            <button class="btn small" id="outCopy"></button>
+            <button class="btn small" id="outDocx"></button>
+            <button class="btn small" id="outPrint"></button>
+            <button class="btn small hidden" id="outAnswers"></button>
+            <button class="btn small hidden" id="outPractice"></button>
+          </div>
+          <div class="output prose" id="output" dir="auto"><p class="muted empty" data-i18n="emptyOutput"></p></div>
+          <div class="muted small" id="outputMeta"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- READER -->
+    <section class="view hidden" id="view-reader">
+      <div class="reader-head">
+        <div><h2 data-i18n="readerTitle"></h2><p class="muted" data-i18n="readerSub"></p></div>
+      </div>
+      <div class="reader-controls">
+        <select id="readerDoc"></select>
+        <div class="player">
+          <button class="icon-btn" id="rPrev" data-i18n-title="prev" aria-label="prev">⏮</button>
+          <button class="btn primary" id="rPlay"></button>
+          <button class="icon-btn" id="rStop" data-i18n-title="stopSpeech" aria-label="stop">⏹</button>
+          <button class="icon-btn" id="rNext" data-i18n-title="next" aria-label="next">⏭</button>
+        </div>
+        <label class="inline"><span data-i18n="speed"></span><input type="range" id="rate" min="0.6" max="1.6" step="0.1" value="1"><output id="rateOut">1×</output></label>
+        <label class="inline"><span data-i18n="voice"></span><select id="voiceSel"></select></label>
+      </div>
+      <div class="notice hidden" id="voiceNotice"></div>
+      <div class="pager"><button class="icon-btn" id="pPrev">‹</button><span id="pageLabel" class="muted"></span><button class="icon-btn" id="pNext">›</button></div>
+      <article class="reader-text prose" id="readerText" dir="auto"></article>
+    </section>
+  </main>
+
+  <aside class="drawer hidden" id="drawer">
+    <div class="drawer-head"><h3 data-i18n="sources"></h3><button class="icon-btn" id="drawerClose" aria-label="close">✕</button></div>
+    <div id="drawerBody"></div>
+  </aside>
+</div>
+<div class="backdrop hidden" id="backdrop"></div>
+
+<dialog id="settingsDialog">
+  <form method="dialog" class="dlg" id="settingsForm">
+    <div class="dlg-head"><h2 data-i18n="settings"></h2><button type="button" class="icon-btn" id="settingsClose" aria-label="close">✕</button></div>
+    <p class="muted" data-i18n="settingsSub"></p>
+    <div class="field"><label data-i18n="provider"></label><select id="sProvider"></select></div>
+    <div id="sFields">
+      <div class="field"><label data-i18n="apiKey"></label><input id="sKey" type="password" autocomplete="off" dir="ltr"><small class="muted" id="sKeyHint"></small></div>
+      <div class="field"><label data-i18n="modelName"></label><input id="sModel" dir="ltr"></div>
+      <div class="field"><label data-i18n="baseUrl"></label><input id="sBase" dir="ltr"></div>
+    </div>
+    <div class="status-line" id="sStatus"></div>
+    <div class="dlg-foot"><button class="btn primary" type="submit" id="sSave" data-i18n="saveTest"></button></div>
+  </form>
+</dialog>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="/static/i18n.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

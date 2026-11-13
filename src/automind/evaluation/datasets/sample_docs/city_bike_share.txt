@@ -1,0 +1,11 @@
+Marlow City Bike Share Program
+
+The Marlow bike share program launched in March 2019 with 400 bicycles and 40 docking stations. By 2024 the fleet had grown to 2,500 bicycles and 210 stations across the city. The program is run by the city transport office together with a private operator.
+
+A single ride costs 2 dollars for the first 30 minutes, and each extra 15 minutes costs 1 dollar. Residents can buy a monthly pass for 18 dollars, which includes unlimited rides of up to 45 minutes. Students get a 50 percent discount on the monthly pass when they show a valid student card.
+
+Bicycles are available every day from 5 in the morning until midnight. Each bicycle has a front light, a basket, and a lock that connects to the docking station. Riders can unlock a bicycle by scanning a code with the Marlow Ride mobile application.
+
+The busiest station is Central Library, which records more than 1,200 trips on an average weekday. Most trips are short, with a median length of 14 minutes. The city reports that the program replaced about 9,000 car trips each week in 2024.
+
+Safety rules say that riders must keep to the bike lanes when they exist and use lights after sunset. Helmets are not required by law but are recommended, and the city offers free helmets at the transport office. Damaged bicycles can be reported through the application, and a repair crew usually collects them within 24 hours.
